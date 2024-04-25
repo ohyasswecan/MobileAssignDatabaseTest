@@ -8,6 +8,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
     private LocalDatabase database;
     private OrderDAO orderDAO;
@@ -29,7 +31,9 @@ public class MainActivity extends AppCompatActivity {
        // userDAO.deleteAllUsers();
       //  categoryDAO.deleteAllCategories();
        // contentDAO.deleteAllContents();
-      //  orderDAO.deleteAllOrders();
+       // orderDAO.deleteAllOrders();
+
+        List<Order> orderList = orderDAO.getAllOrders();//you must invoke any DAO instance to allow database connection stay open
 /*
         User user = new User();
         user.setFirstname("John");
