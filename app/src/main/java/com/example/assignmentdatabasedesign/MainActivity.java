@@ -28,7 +28,23 @@ public class MainActivity extends AppCompatActivity {
         userDAO = database.userDAO();
         categoryDAO = database.categoryDAO();
         contentDAO = database.contentDAO();
-       // userDAO.deleteAllUsers();
+        // Instantiate UserCallBack as an anonymous inner class
+        UserCallBack userCallBack = new UserCallBack() {
+            @Override
+            public void onUserLoaded(List<User> users) {
+                // Handle the loaded users here
+                // For example, update the UI with the loaded users
+                // users contains the list of all users retrieved from the database
+            }
+        };
+
+// Instantiate DatabaseAsyncTask with UserDAO, operation type 2, and UserCallBack
+        DatabaseAsyncTask task = new DatabaseAsyncTask(userDAO, 2, null, userCallBack);
+
+// Execute the task
+        task.execute();
+
+        // userDAO.deleteAllUsers();
       //  categoryDAO.deleteAllCategories();
        // contentDAO.deleteAllContents();
        // orderDAO.deleteAllOrders();
